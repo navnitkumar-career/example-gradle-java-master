@@ -1,0 +1,44 @@
+plugins {
+    id("idea")
+    id("java")
+    id("io.ebean") version "12.6.5"
+}
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+}
+
+compileJava {
+    sourceCompatibility = '11'
+    targetCompatibility = '11'
+}
+
+//idea {
+//    module {
+//        sourceDirs += file("$projectDir/build/classes/java/main")
+//        generatedSourceDirs += file("$projectDir/build/classes/java/main")
+//    }
+//}
+
+dependencies {
+
+    annotationProcessor("io.ebean:querybean-generator:12.6.5")
+
+    implementation("org.avaje.composite:logback:1.1")
+
+    implementation("io.ebean:ebean:12.6.5")
+    implementation("io.ebean:ebean-querybean:12.6.5")
+
+    testImplementation("io.ebean:ebean-test:12.6.5")
+    testImplementation('org.avaje.composite:junit:1.1')
+}
+
+ebean {
+    debugLevel = 0 //0 - 9
+}
+
+test {
+    testLogging.showStandardStreams = true
+    testLogging.exceptionFormat = 'full'
+}
